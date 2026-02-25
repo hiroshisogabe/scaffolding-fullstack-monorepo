@@ -1,78 +1,92 @@
 <role>
-    You are a Senior Fullstack Software Engineer especialized in Node.js and you will bootstrap a backend in this monorepo with minimum viable code.
+You are a Senior Fullstack Software Engineer specialized in Node.js. Bootstrap a minimal, production-like backend in this monorepo.
 </role>
 
-<task>Implement a backend in Node.js with mininum viable code</task>
+<task>
+Implement a backend in Node.js with minimal viable code.
+</task>
 
 <requirements>
-    # Technical
+# Technical
 
-    ## Folder structure
-    - Create one specific folder for backend in ./backend.
+## Folder structure
+- Create the backend in `./backend`.
 
-    ## Project configuration
-    - Create a .gitignore with common files and folders which should be ignored, e.g. ./node_modules and .env.
-    - Create a real `.env` file in `./backend` with the required variables 
-    - Create an .env.example related to the required variables used in the backend implementation for local execution, at minimum `PORT=3000`.
+## Project configuration
+- Add a root-level `.gitignore` with common Node.js ignores, including at least `node_modules` and `.env`.
+- Create `./backend/.env.example` documenting required variables for local execution, including at least `PORT=3000`.
 
-    ## Programming language & web application framework
-    - The backend should use Node.js and TypeScript.
-    - Express should be the web application framework to serve the API.
+## Programming language and framework
+- Use Node.js with TypeScript.
+- Use Express as the web framework.
 
-    ## Code standards
-    - Avoid .js files and consider using .ts whenever it's possible.
-    - When using TypeScript, **any as type is not acceptable**.
+## Code standards
+- Prefer `.ts` files; avoid `.js` unless strictly required by tooling.
+- Do not use `any` in TypeScript.
 
-    ## Server configuration
-    - We need to make sure any CORS issues are mitigated in the backend implementation when configuring Express.
-    - The Port which will serve the API should be retrieved from a variable from .env file and fallback to 3000 in case it's not present.
+## Server configuration
+- Configure CORS to avoid common cross-origin issues.
+- Read the server port from `.env` and fall back to `3000` when missing.
+- When the server starts, log the full local URL including protocol, host, and port (for example, `http://127.0.0.1:3000`) and also log the port value explicitly.
 </requirements>
 
 <endpoints>
-    # Test endpoint
+# Health endpoint
 
-    ## [GET] /test [200]
+## [GET] /test
 
-    ### Possible Status Code
-    - 200: Success
-    - 500: Unexpected error
+### Possible status codes
+- `200`: success
+- `500`: unexpected error
 
-    ### Returned payload
-    - In case of success, it should contain the properties as the following sample JSON shows:
-    {
-        "status": 'Running',
-        "timestamp": '2026-02-25T13:38:14.406Z'
-    }
+### Success payload
+The success response must include:
+```json
+{
+  "status": "Running",
+  "timestamp": "2026-02-25T13:38:14.406Z"
+}
+```
 </endpoints>
 
 <errors>
-    # JSON structure
-    - The JSON should contain two properties: "error" and "message".
-    - The "error" should be the category of the error, e.g. "Data input missing".
-    - The "message" should describe the error, e.g. "Name is a required data".
+# Error response contract
+- Error JSON must contain exactly two top-level properties: `error` and `message`.
+- `error`: high-level error category (for example, `Data input missing`).
+- `message`: human-readable detail (for example, `Name is a required field`).
 
-    # Error boundary
-    - In case any error occur and wasn't caught, we should return status code 500 with error "Unexpected error" and the original message of the error as the "message".
+# Unhandled error boundary
+- For uncaught errors, return status `500` with:
+  - `error`: `Unexpected error`
+  - `message`: original error message when available
 </errors>
 
 <tests>
-    ### Library
-    - use jest to run the tests adding any required configuration file. 
-    
-    ### Path
-    - The test files should be in the same path as the main file tested, following the pattern for file name "*.test.*"
+## Test library
+- Use Jest, including required config files.
 
-    ### Unit tests
-    - create unit tests including happy and unhappy paths.
-    - every scenario should be considered, e.g. the error boundary scenario.
+## Test file location
+- Keep tests near the code they validate, using the `*.test.*` naming pattern.
 
-    ### Real test
-    - run the server and make sure it's returning the expected response for a success request at least using curl.
-    - report the request url and the response from backend.
+## Required coverage
+- Add happy-path and unhappy-path unit tests.
+- Include at least one test for the unhandled error boundary.
+
+## Real execution check
+- Run the server and validate a successful `GET /test` request via `curl`.
+- Report the request URL and backend response.
 </tests>
 
-<critical>
-    ### Out of scope
+<deliverables>
+- Working backend implementation in `./backend`.
+- Test suite with passing results.
+- A short run report containing:
+  - command(s) used to run tests
+  - `curl` command used for real execution check
+  - URL and actual response body
+</deliverables>
 
-    - **NEVER** create comments in the codebase
+<critical>
+# Out of scope
+- Never add comments in the codebase.
 </critical>
