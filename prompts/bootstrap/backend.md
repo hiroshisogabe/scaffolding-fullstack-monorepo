@@ -11,6 +11,8 @@ Implement a backend in Node.js with minimal viable code.
 
 ## Folder structure
 - Create the backend in `./backend`.
+- Create only folders and files required by the implemented solution.
+- Do not create empty placeholder directories (for example, `routes`, `middleware`, `__tests__`) unless they are used by real code or tests.
 
 ## Project configuration
 - Add a root-level `.gitignore` with common Node.js ignores, including at least `node_modules` and `.env`.
