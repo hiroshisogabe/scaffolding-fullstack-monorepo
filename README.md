@@ -16,13 +16,13 @@ They started the course with a "base" monorepo with `frontend` and `backend`.
 
 I wondered how they created this "base" and then I decided to follow the hand-crafted prompts taught in the course, which mix `tags` and `markdown`: one prompt to bootstrap the backend and another for the frontend.
 
-## So was AI used to create the monorepo?
+## The usage of AI
+
+### So was AI used to create the monorepo?
 
 Yes, I started with the creation of the `backend` prompt and let the LLM generate the code. After each try I asked the LLM to fix the codebase due to something unexpected and also adjust the prompt to avoid the issue in the future.
 
 When the result was satisfactory, i.e., the LLM could write the code as I expected, I created the `frontend` prompt based on the `backend` once it was sufficiently refined.
-
-## Tech details
 
 ### Prompts
 
@@ -30,6 +30,16 @@ The initial prompts that I used to bootstrap the repo are under the [`./prompts`
 
 ### Only prompts at this moment?
 
-Yes, I wanted to start this way, so I'll create `rules` and `skills` at another time, for instance, to build some functionality using this scaffolding monorepo as the base project.
+I created an [`AGENTS.md`](./AGENTS.md) following the `rules` principles, i.e. meaningful instructions and definitions which are relevant for the entire codebase, leaving self-contained and specific instructions to `skills` at another time, for instance, to build some functionality using this scaffolding monorepo as the base project.
 
-The course introduced prompts, templates, and commands in Portuguese, although I'd prefer to have them in English. This is a good opportunity to review the main ideas and nuances, which I can apply in future projects.
+### Don't we have the stack defined to add related `skills` as well?
+
+It's a valid point, however the next project that will use this repository as a boilerplate, could either install a skill provided from any source, e.g. the vercel-react-best-practices for the `frontend`, or create one from scratch with the agent's help.
+
+## Tech details
+
+The generated files for the "basic" `frontend` and `backend` can be found in the respective folders:
+- [`./frontend`](./frontend/)
+- [`./backend`](./backend/)
+
+You can check both `package.json` to understand which `scripts` are available, for instance start both `frontend` and `backend` on local environment.
